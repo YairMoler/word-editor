@@ -1,20 +1,19 @@
 import { useState } from "react";
-
 import "./App.css";
 import Display from "./components/Display";
 import KeyboardTypeArray from "./data/keyboard-data";
+import Keyboard from "./components/Keyboard";
 function App() {
-    const [KeyboardType, setKeyboardType] = useState(KeyboardTypeArray[0]);
-    const [charArray, setCharArray] = useState([
-        { size: 12, colors: "black", value: "a" },
-        { size: 12, colors: "black", value: "a" },
-        { size: 12, colors: "black", value: "h" },
-    ]);
+    const [KeyboardType, setKeyboardType] = useState(KeyboardTypeArray.english);
+    const [charArray, setCharArray] = useState([]);
+    function addChar(char) {
+        setCharArray((prevCharArray) => [...prevCharArray, { size: 12, colors: "black", value: char }]);
+    }
     return (
         <>
             <Display charArray={charArray} />
-            {/* <Keyboard />
-            <Languages />
+            <Keyboard KeyboardType={KeyboardType} handleClick={addChar}/>
+            {/* <Languages />
             <Sizes />
             <Colors />
             <Specials /> */}
