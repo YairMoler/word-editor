@@ -1,8 +1,8 @@
 import { useState } from "react";
-
 import "./App.css";
 import Display from "./components/Display";
 import KeyboardTypeArray from "./data/keyboard-data";
+import Keyboard from "./components/Keyboard";
 import Style from "./components/style";
 
 function App() {
@@ -11,12 +11,11 @@ function App() {
         currentColor: "black",
     };
 
-    const [KeyboardType, setKeyboardType] = useState(KeyboardTypeArray[0]);
-    const [charArray, setCharArray] = useState([
-        { size: 12, colors: "black", value: "a" },
-        { size: 12, colors: "black", value: "a" },
-        { size: 12, colors: "black", value: "h" },
-    ]);
+    const [KeyboardType, setKeyboardType] = useState(KeyboardTypeArray.english);
+    const [charArray, setCharArray] = useState([]);
+    function addChar(char) {
+        setCharArray((prevCharArray) => [...prevCharArray, { size: 12, colors: "black", value: char }]);
+    }
 
     function changeStyle(type) {
         return function (value) {
@@ -31,8 +30,8 @@ function App() {
         <>
             <Display charArray={charArray} />
 
-            {/* <Keyboard />
-            <Languages /> */}
+            <Keyboard KeyboardType={KeyboardType} handleClick={addChar} />
+            {/* <Languages /> */}
 
             <Style handleClick={changeStyle("currentSize")} buttons={[12, 14, 16, 18, 20]} />
             <Style handleClick={changeStyle("currentColor")} buttons={["black", "green", "red", "blue", "pink"]} />
