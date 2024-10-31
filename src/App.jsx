@@ -11,9 +11,9 @@ function App() {
         currentSize: 12,
         currentColor: "black",
     });
-
     const [KeyboardType, setKeyboardType] = useState(KeyboardTypeArray.english);
     const [charArray, setCharArray] = useState([]);
+
     function addChar(char) {
         setCharArray((prevCharArray) => [...prevCharArray, { size: currentStyle.currentSize, color: currentStyle.currentColor, value: char }]);
         console.log("{ size: currentStyle.currentSize, colors: currentStyle.currentColor, value: char }: ", {
@@ -22,6 +22,11 @@ function App() {
             value: char,
         });
     }
+
+    function deleteChar() {
+        setCharArray((prevCharArray) => prevCharArray.filter((item, index) => index !== prevCharArray.length - 1));
+    }
+
     function changeLanguages(language) {
         setKeyboardType(() => KeyboardTypeArray[language]);
     }
@@ -38,7 +43,7 @@ function App() {
         <>
             <Display charArray={charArray} />
 
-            <Keyboard KeyboardType={KeyboardType} handleClick={addChar} />
+            <Keyboard KeyboardType={KeyboardType} handleClickAdd={addChar} handleClickDelete={deleteChar} />
             <Languages handleClick={changeLanguages} KeyboardType={["english", "hebrew", "upperCase"]} />
 
             <Style handleClick={changeStyle("currentSize")} buttons={[12, 14, 16, 18, 20]} />
