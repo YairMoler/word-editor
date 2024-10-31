@@ -5,6 +5,9 @@
 h1{
   font-family: Dancing Script  ;
 }
+h2{
+    font-family: Dancing Script  ;
+}
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
