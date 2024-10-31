@@ -1,3 +1,12 @@
-export default function styleAll(props) {
-    <button onClick={props.handleClick("blue")}>blue</button>;
+export default function styleAll({ handleClick, buttons }) {
+    return (
+        <>
+            {buttons.map((button, index) => (
+                <button onClick={() => handleClick(button)} key={index}>
+                    {button}
+                </button>
+            ))}
+            ;
+        </>
+    );
 }

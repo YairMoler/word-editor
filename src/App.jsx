@@ -45,13 +45,15 @@ function App() {
         };
     }
 
-    function changeColorAll(color) {
-        setCharArray((prevCharArray) =>
-            prevCharArray.map((item) => {
-                return { ...item, color };
-            })
-        );
-        console.log(charArray);
+    function changeStyleAll(type) {
+        return function (value) {
+            setCharArray((prevCharArray) =>
+                prevCharArray.map((item) => {
+                    return { ...item, [type]: value };
+                })
+            );
+            console.log(charArray);
+        };
     }
     return (
         <>
@@ -68,7 +70,13 @@ function App() {
             <br />
             <br />
             <Style handleClick={changeStyle("currentFont")} buttons={["DynaPuff", "Rubik Wet Paint", "Danfo", "Unlock", "Pacifico"]} />
-            <button onClick={() => changeColorAll("blue")}>blue</button>
+            <br />
+            <br />
+            <h2>change all the displayed text</h2>
+            <StyleAll handleClick={changeStyleAll("size")} buttons={[12, 14, 16, 18, 20]} />
+            <br />
+            <br />
+            <StyleAll handleClick={changeStyleAll("color")} buttons={["black", "green", "red", "blue", "pink"]} />
         </>
     );
 }
