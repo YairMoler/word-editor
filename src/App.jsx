@@ -4,6 +4,7 @@ import Display from "./components/Display";
 import KeyboardTypeArray from "./data/keyboard-data";
 import Keyboard from "./components/Keyboard";
 import Style from "./components/style";
+import Languages from "./components/Languages";
 
 function App() {
     const currentStyle = {
@@ -14,8 +15,11 @@ function App() {
     const [KeyboardType, setKeyboardType] = useState(KeyboardTypeArray.english);
     const [charArray, setCharArray] = useState([]);
     function addChar(char) {
-        setCharArray((prevCharArray) => [...prevCharArray, { size: 12, colors: "black", value: char }]);
-    }
+      setCharArray((prevCharArray) => [...prevCharArray, { size: 12, colors: "black", value: char }]);
+  }
+  function changeLanguages(language) {
+    setKeyboardType(() => (KeyboardTypeArray[language]));
+}
 
     function changeStyle(type) {
         return function (value) {
@@ -31,7 +35,7 @@ function App() {
             <Display charArray={charArray} />
 
             <Keyboard KeyboardType={KeyboardType} handleClick={addChar} />
-            {/* <Languages /> */}
+            <Languages handleClick={changeLanguages} KeyboardType={["english","hebrew","upperCase"]}/>
 
             <Style handleClick={changeStyle("currentSize")} buttons={[12, 14, 16, 18, 20]} />
             <Style handleClick={changeStyle("currentColor")} buttons={["black", "green", "red", "blue", "pink"]} />
