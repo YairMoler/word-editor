@@ -5,7 +5,6 @@ import KeyboardTypeArray from "./data/keyboard-data";
 import Keyboard from "./components/Keyboard";
 import Style from "./components/style";
 import Languages from "./components/Languages";
-import StyleAll from "./components/StyleAll";
 
 function App() {
     const [currentStyle, setCurrentStyle] = useState({
@@ -55,6 +54,10 @@ function App() {
             console.log(charArray);
         };
     }
+
+    function clear() {
+        setCharArray(() => []);
+    }
     return (
         <>
             <h1>Let's write a nice sentence!</h1>
@@ -73,10 +76,13 @@ function App() {
             <br />
             <br />
             <h2>change all the displayed text</h2>
-            <StyleAll handleClick={changeStyleAll("size")} buttons={[12, 14, 16, 18, 20]} />
+            <Style handleClick={changeStyleAll("size")} buttons={[12, 14, 16, 18, 20]} />
             <br />
             <br />
-            <StyleAll handleClick={changeStyleAll("color")} buttons={["black", "green", "red", "blue", "pink"]} />
+            <Style handleClick={changeStyleAll("color")} buttons={["black", "green", "red", "blue", "pink"]} />
+            <br />
+            <br />
+            <button onClick={clear}>clear</button>
         </>
     );
 }
