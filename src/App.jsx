@@ -6,26 +6,30 @@ import Keyboard from "./components/Keyboard";
 import Style from "./components/style";
 
 function App() {
-    const currentStyle = {
+    const [currentStyle, setCurrentStyle] = useState({
         currentSize: 12,
         currentColor: "black",
-    };
+    });
 
     const [KeyboardType, setKeyboardType] = useState(KeyboardTypeArray.english);
     const [charArray, setCharArray] = useState([]);
     function addChar(char) {
-        setCharArray((prevCharArray) => [...prevCharArray, { size: 12, colors: "black", value: char }]);
+        setCharArray((prevCharArray) => [...prevCharArray, { size: currentStyle.currentSize, color: currentStyle.currentColor, value: char }]);
+        console.log("{ size: currentStyle.currentSize, colors: currentStyle.currentColor, value: char }: ", {
+            size: currentStyle.currentSize,
+            colors: currentStyle.currentColor,
+            value: char,
+        });
     }
 
     function changeStyle(type) {
         return function (value) {
-            currentStyle[type] = value;
+            setCurrentStyle((prevCurrentStyle) => ({ ...prevCurrentStyle, [type]: value }));
+            console.log("{ ...prevCurrentStyle, [type]: value }: ", { ...currentStyle, [type]: value });
             console.log("type: ", type);
-            setCharArray((prevCharArray) => [...prevCharArray, { size: currentStyle.currentSize, color: currentStyle.currentColor, value: "a" }]);
         };
     }
-    // console.log(changeStyle(currentSize));
-    // console.log(changeStyle);
+
     return (
         <>
             <Display charArray={charArray} />
