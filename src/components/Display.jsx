@@ -5,7 +5,7 @@ export default function Display({ charArray }) {
     return (
         <div className={style.div}>
             {charArray.map((char, index) => (
-                <Char size={char.size} color={char.color} value={char.value} key={index} />
+                <Char size={char.size} color={char.color} font={char.font} value={char.value} key={index} />
             ))}
         </div>
     );
